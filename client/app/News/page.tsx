@@ -4,6 +4,16 @@ import { SiApplenews } from "react-icons/si";
 import Link from "next/link";
 
 export const revalidate = 86400;
+type ApiResponse = {
+  title: string;
+  description: string;
+  content: string;
+  url: string;
+  image: string | null;
+  source: {
+    name: string;
+  };
+};
 
 const Page = async () => {
   const API_KEY = process.env.API_SECRET_KEY;
@@ -34,7 +44,7 @@ const Page = async () => {
       </header>
       <main className="my-[6em] flex items-center justify-center px-3 sm:px-6 md:px-8">
         <div className="w-full max-w-[1300px] flex flex-col items-center space-y-8">
-          {data.articles.map((article: any) => (
+          {data.articles.map((article: ApiResponse) => (
             <div
               key={article.url}
               className="
